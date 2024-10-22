@@ -1,5 +1,5 @@
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '~/stores/user'
 
 export default defineNuxtPlugin((nuxtApp) => {
 
@@ -10,8 +10,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     baseURL: 'https://sat7.faulio.com/api/v1',
     onRequest({ request, options, error }) {
       const token = localStorage.getItem('token')
+      console.log(options);
+      
       if (token) {
         userStore.setToken(token)
+        
       }
     },
     async onResponseError({ response }) {
