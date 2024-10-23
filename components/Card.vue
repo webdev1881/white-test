@@ -26,17 +26,20 @@ const toggleFavorite = () => {
 </script>
 
 <template>
-  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+  <div class="wrapper bg-white bg-gradient-to-r from-base from-10% ">
 
 
     <!-- {{ item }} -->
+    <div class="gradient absolute top-0 left-0 w-full h-full shadow-3xl   "></div>
 
-    <img :src="item" :alt="item.title" class="w-full h-48 object-cover" />
-    <div class="p-4">
+
+    <img :src="item.allimages?.landscape?.orig" :alt="item.title" class="w-full"  />
+
+    <div class="p-4 absolute top-[50%]">
       <h3 class="text-lg font-semibold">{{ item.title }}</h3>
-      <p class="text-gray-600">{{ item.description }}</p>
+      <p class="z-10">{{ item.description }}</p>
       <button v-if="userStore.isLogged" @click="toggleFavorite"
-        class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+        class="mt-2 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">
         <!-- {{ userStore.isFavorite(item.id) ? 'Remove from Favorites' : 'Add to Favorites' }} -->
       </button>
     </div>

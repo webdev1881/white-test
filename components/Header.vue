@@ -1,5 +1,5 @@
 <template>
-    <header class="shadow-md left-0 right-0 z-10 fixed inset-x-0 top-0 z-3xl flex flex-col transition-[red,h-5 ] bg-gradient-to-b from-primary h-header md:h-header-md">
+    <header class=" left-0 right-0 z-10 fixed inset-x-0 top-0 z-3xl flex flex-col transition-[red,h-5 ] bg-gradient-to-b from-base from-95% h-header md:h-header-md">
       <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
         <NuxtLink to="/" class="text-xl font-bold text-white">My App</NuxtLink>
         <div>

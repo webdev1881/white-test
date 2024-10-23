@@ -12,7 +12,11 @@ module.exports = {
       extend: {
         colors: {
           'base': '#071a3b',
+          'gradient': '#071a3b',
         },
+        boxShadow: {
+          '3xl': '2px 1px 32px 39px rgba(7,26,59,1)  inset',
+        }
       },
       screens: {
         'sm': '640px',

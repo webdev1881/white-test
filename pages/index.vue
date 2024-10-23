@@ -1,32 +1,55 @@
 <template>
-  <div class="loader bg-base mx-auto flex items-center justify-center min-h-screen pt-16">
+  <div class="loader bg-base mx-auto   min-h-screen ">
 
     <div class="content text-white ">
       <Header />
 
-      <!-- <Card :item="item" />
-      {{ items }} -->
+      <!-- <Card :item="item" /> -->
+
+      <!-- {{ items }} -->
 
 
-      <main class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-6">Home</h1>
+      <main class="container mx-auto">
         <div v-if="isLoading">Loading...</div>
         <div v-else-if="error">{{ error }}</div>
+
         <div v-else>
-          <Swiper :slides-per-view="3" :space-between="20" @swiper="onSwiper" @slideChange="onSlideChange">
+          <Carousel>
+            <Slide v-for="item in items" :key="item.id">
+              <!-- <div class="carousel__item">{{ item.title}}</div> -->
+              <Card :item="item" />
+            </Slide>
+  
+            <template #addons>
+              <Pagination />
+            </template>
+          </Carousel>
+        </div>
+
+        <!-- <div v-else>
+          <Swiper 
+          :loop="true"
+          :modules="[SwiperAutoplay, SwiperEffectCreative]"
+          :navigation="true"
+          :slides-per-view="1"
+          :space-between="150"
+          @slideChange="onSlideChange"
+          @swiper="onSwiper"
+
+          :draggable="true"
+
+          >
             <SwiperSlide v-for="item in items" :key="item.id">
-              <!-- <Card :item="item" /> -->
-            </SwiperSlide>
-          </Swiper>
-          <!-- <Swiper :slides-per-view="3" :space-between="20" @swiper="onSwiper" @slideChange="onSlideChange">
-            <SwiperSlide v-for="item in items" :key="item.id">
+              {{item.title}}
               <Card :item="item" />
             </SwiperSlide>
-          </Swiper> -->
-        </div>
+            <SwiperControls />
+          </Swiper>
+
+        </div> -->
       </main>
 
-    
+
     </div>
 
   </div>
@@ -38,6 +61,8 @@ import { useUserStore } from '~/stores/user'
 import Header from '@/components/Header.vue'
 
 import type { IUser } from "@/types/user.type"
+
+// const swiper = useSwiper()
 
 const { $api } = useNuxtApp()
 const { public: { apiUrl } } = useRuntimeConfig()
@@ -68,7 +93,7 @@ const fetchData = () => {
       const { data } = await useAsyncData(() => $api('/pageblocks/vod_main_page'))
       items.value = data.value[0].programslidesobjects
 
-      console.log( items.value )
+      console.log(items.value)
 
     })
   } catch (err) {
@@ -95,7 +120,7 @@ const toggleFavorite = async () => {
 
 
 const onSwiper = (swiper) => {
-  // console.log(swiper)
+  console.log(swiper);
 }
 
 const onSlideChange = () => {
@@ -106,6 +131,4 @@ const onSlideChange = () => {
 onMounted(fetchData)
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
